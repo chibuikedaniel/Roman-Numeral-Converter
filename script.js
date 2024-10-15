@@ -2,7 +2,8 @@ const convertBtn = document.getElementById('convert-btn');
 const numberInput = document.getElementById('number');
 const output = document.getElementById('output');
 
-convertBtn.addEventListener('click', () => {
+
+const checkUserInput = () => {
     const num = numberInput.value;
 
     if (!num) {
@@ -12,7 +13,8 @@ convertBtn.addEventListener('click', () => {
     } else {
         output.textContent = convertToRoman(parseInt(num));
     }
-});
+}
+
 
 function convertToRoman(num) {
     const romanNumerals = [
@@ -40,3 +42,11 @@ function convertToRoman(num) {
     }
     return result;
 }
+
+convertBtn.addEventListener('click', checkUserInput);
+
+numberInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        checkUserInput();
+    }
+});
